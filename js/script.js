@@ -4,7 +4,6 @@ window.addEventListener('load' , () => {
     const description = document.getElementsByClassName('temperature-description')[0];
     const timezoneText = document.getElementsByClassName('timezone-text')[0];
 
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             latitude = position.coords.latitude;
@@ -18,7 +17,6 @@ window.addEventListener('load' , () => {
                 let data = await response.json();
                 return data;
             }
-           
             fetchApi(latitude , longitude).then(data => {
                 const timezone = data.timezone;
                 const {temperature , summary} = data.currently;
@@ -26,10 +24,7 @@ window.addEventListener('load' , () => {
                 degree.textContent = temperature;
                 description.textContent = summary;
                 timezoneText.textContent = timezone;
-                console.log(timezone);
             });
-
         });
     }
-    
 });
